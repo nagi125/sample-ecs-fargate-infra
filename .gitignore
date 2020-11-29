@@ -1,0 +1,10 @@
+# IDE
+.idea
+
+# env
+.env
+
+# Terraform
+.terraform
+*.tfstate
+*.tfstate.backup
