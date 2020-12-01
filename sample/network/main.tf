@@ -40,3 +40,17 @@ resource "aws_subnet" "publics" {
     Name = "${var.name}-public-${count.index}"
   }
 }
+
+# Subnet(Private)
+resource "aws_subnet" "privates" {
+  count = length(var.private_subnet_cidrs)
+
+  vpc_id = aws_vpc.main.id
+
+  availability_zone = var.azs[count.index]
+  cidr_block        = var.private_subnet_cidrs[count.index]
+
+  tags = {
+    Name = "${var.name}-private-${count.index}"
+  }
+}
