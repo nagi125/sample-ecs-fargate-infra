@@ -26,3 +26,17 @@ resource "aws_vpc" "main" {
     Name = var.name
   }
 }
+
+# Subnet(Public)
+resource "aws_subnet" "publics" {
+  count = length(var.public_subnet_cidrs)
+
+  vpc_id = aws_vpc.main.id
+
+  availability_zone = var.azs[count.index]
+  cidr_block        = var.public_subnet_cidrs[count.index]
+
+  tags = {
+    Name = "${var.name}-public-${count.index}"
+  }
+}
