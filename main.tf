@@ -27,3 +27,8 @@ module "elb" {
   vpc_id            = module.network.vpc_id
   public_subnet_ids = module.network.public_subnet_ids
 }
+
+module "ecs_cluster" {
+  source = "./ecs_cluster"
+  app_name = var.app_name
+}
