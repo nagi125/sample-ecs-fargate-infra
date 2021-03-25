@@ -84,3 +84,11 @@ module "elasticache" {
   vpc_id = module.network.vpc_id
   private_subnet_ids = module.network.private_subnet_ids
 }
+
+module "ec2" {
+  source = "./ec2"
+  app_name = var.app_name
+
+  vpc_id    = module.network.vpc_id
+  subnet_id = module.network.ec2_subnet_id
+}
