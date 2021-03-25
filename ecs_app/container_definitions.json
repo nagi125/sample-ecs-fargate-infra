@@ -53,8 +53,7 @@
       {
         "name": "LOG_CHANNEL",
         "value": "stderr"
-      },
-
+      }
     ]
   }
 ]
