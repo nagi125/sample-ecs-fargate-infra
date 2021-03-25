@@ -1,4 +1,4 @@
-variable "name" {
+variable "app_name" {
   type = string
 }
 
@@ -11,8 +11,8 @@ variable "public_subnet_ids" {
 }
 
 resource "aws_security_group" "main" {
-  name        = "${var.name}-alb"
-  description = "${var.name} alb"
+  name        = "${var.app_name}-alb"
+  description = "${var.app_name} alb"
 
   vpc_id = var.vpc_id
 
@@ -24,7 +24,7 @@ resource "aws_security_group" "main" {
   }
 
   tags = {
-    Name = "${var.name}-alb"
+    Name = "${var.app_name}-alb"
   }
 }
 
@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "http" {
 
 resource "aws_lb" "main" {
   load_balancer_type = "application"
-  name               = var.name
+  name               = var.app_name
 
   security_groups = [aws_security_group.main.id]
   subnets = var.public_subnet_ids
