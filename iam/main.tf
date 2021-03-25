@@ -9,7 +9,7 @@ resource "aws_iam_role" "task_execution" {
 
 resource "aws_iam_role_policy" "task_execution" {
   role = aws_iam_role.task_execution.id
-  policy = file("task_execution_role_policy.json")
+  policy = file("./iam/task_execution_role_policy.json")
 
 }
 
