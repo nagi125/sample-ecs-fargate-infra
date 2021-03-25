@@ -1,13 +1,12 @@
 version: '3'
 services:
   terraform:
-    container_name: 'terraform'
-    build:
-      context: .
-      dockerfile: Dockerfile
+    container_name: terraform
+    image: hashicorp/terraform:0.14.7
     env_file:
       - .env
     volumes:
       - .:/terraform
+    working_dir: /terraform
     entrypoint: ash
     tty: true
