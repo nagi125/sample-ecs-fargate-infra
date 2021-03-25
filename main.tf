@@ -75,3 +75,12 @@ module "rds" {
   master_username = var.DB_MASTER_NAME
   master_password = var.DB_MASTER_PASS
 }
+
+module "elasticache" {
+  source = "./elasticache"
+
+  app_name = var.app_name
+
+  vpc_id = module.network.vpc_id
+  private_subnet_ids = module.network.private_subnet_ids
+}
