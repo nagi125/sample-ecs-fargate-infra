@@ -13,6 +13,11 @@ variable "azs" {
   default = ["ap-northeast-1a", "ap-northeast-1c"]
 }
 
+module "iam" {
+  source = "./iam"
+  app_name = var.app_name
+}
+
 module "network" {
   source   = "./network"
   app_name = var.app_name
