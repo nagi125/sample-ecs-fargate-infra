@@ -37,3 +37,16 @@ module "ecs_cluster" {
   source = "./ecs_cluster"
   app_name = var.app_name
 }
+
+module "ecs_app" {
+  source = "./ecs_app"
+
+  app_name = var.app_name
+
+  cluster_name       = module.ecs_cluster.cluster_name
+  vpc_id             = module.network.vpc_id
+  public_subnet_ids  = module.network.public_subnet_ids
+  http_listener_arn  = module.elb.http_listener_arn
+
+  iam_role_task_execution_arn = module.iam.iam_role_task_execution_arn
+}

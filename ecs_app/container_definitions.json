@@ -1,0 +1,60 @@
+[
+  {
+    "name": "nginx",
+    "image": "${account_id}.dkr.ecr.${region}.amazonaws.com/sample-nginx:${tag}",
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80,
+        "protocol": "tcp"
+      }
+    ],
+    "mountPoints": [
+      {
+        "sourceVolume": "app-storage",
+        "containerPath": "/app"
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-region": "${region}",
+        "awslogs-group": "/${name}/ecs",
+        "awslogs-stream-prefix": "sample-nginx"
+      }
+    }
+  },
+  {
+    "name": "app",
+    "image": "${account_id}.dkr.ecr.${region}.amazonaws.com/sample-app:${tag}",
+    "mountPoints": [
+      {
+        "sourceVolume": "app-storage",
+        "containerPath": "/app"
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-region": "${region}",
+        "awslogs-group": "/${name}/ecs",
+        "awslogs-stream-prefix": "sample-app"
+      }
+    },
+    "environment": [
+      {
+        "name": "APP_KEY",
+        "value": "hogefugapiyo"
+      },
+      {
+        "name": "APP_ENV",
+        "value": "production"
+      },
+      {
+        "name": "LOG_CHANNEL",
+        "value": "stderr"
+      },
+
+    ]
+  }
+]
