@@ -21,12 +21,12 @@
     ```
 1. モジュールの読み込み
     ```
-    $ terraform init
+    # terraform init
     ```
    
 1. 環境の作成
     ```
-    $ terraform apply 
+    # terraform apply 
     ```
    
 ## 補足説明
