@@ -2,7 +2,7 @@ version: '3'
 services:
   terraform:
     container_name: terraform
-    image: hashicorp/terraform:0.14.7
+    image: hashicorp/terraform:1.3.3
     env_file:
       - .env
     volumes:
